@@ -1,0 +1,41 @@
+config:
+    name: create jobs 
+    variables:
+        test_file_name: jobs.csv
+        test_file_dir: testdata
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    export: ["jobs_id"]
+    
+teststeps:
+-
+    name: get jobs id
+    testcase: testcases/post_jobs_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - connection_id
+        - jobs_id
+# TODO: reference bug
+-
+    name: patch jobs
+    variables:
+        key: patch_pass
+    request:
+        method: PATCH
+        url: /jobs/$jobs_id
+        json: ${get_test_data($test_file_name,$test_file_dir,$key,$connection_id)}
+        headers:
+            am-api-key: ${ENV(AM_API_KEY)}
+            Content-Type: application/json
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+    extract:
+        jobs_id: body.data.id
+    validate:
+#        - eq: ["status_code", 200]
+        - eq: ["body.meta.code", 20000]
+#        - eq: ["body.data.app.name", "3"]
+        - eq: ["body.data.connection.app.key", "gq-guo-test"]
+        - eq: ["body.data.status", "terminated"]
+

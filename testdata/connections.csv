@@ -23,3 +23,60 @@
             ""id"": ""15ce78a2be4d4429aa729dd91be0cc87""
         }
 }"
+"api_key_wrong","{
+    ""legacy_id"": ""5f213fb2f90c620f009a9575"",
+        ""app"": {
+            ""key"": ""gq-guo-test"",
+            ""options"": {
+                ""access_token"": ""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"",
+                ""api_key"": """",
+                ""basic_auth_token"": """",
+                ""currency"": ""USD"",
+                ""description"": ""gq-guo-test.myshopify.com"",
+                ""domain"": ""gq-guo-test"",
+                ""info"": [],
+                ""is_private"": false,
+                ""password"": """",
+                ""scope"": ""read_orders"",
+                ""url"": ""gq-guo-test.myshopify.com""
+            },
+            ""name"": ""aftership"",
+            ""platform"": ""shopify""
+        },
+        ""organization"": {
+            ""id"": ""15ce78a2be4d4429aa729dd91be0cc87""
+        }
+}"
+"no_organization_id","{
+    ""legacy_id"": ""5f213fb2f90c620f009a9575"",
+        ""app"": {
+            ""key"": ""gq-guo-test"",
+            ""options"": {
+                ""access_token"": ""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"",
+                ""api_key"": """",
+                ""basic_auth_token"": """",
+                ""currency"": ""USD"",
+                ""description"": ""gq-guo-test.myshopify.com"",
+                ""domain"": ""gq-guo-test"",
+                ""info"": [],
+                ""is_private"": false,
+                ""password"": """",
+                ""scope"": ""read_orders"",
+                ""url"": ""gq-guo-test.myshopify.com""
+            },
+            ""name"": ""aftership"",
+            ""platform"": ""shopify""
+        },
+        ""organization"": {
+            ""id"": """"
+        }
+}"
+"no_app_data","{
+    ""legacy_id"": ""5f213fb2f90c620f009a9575"",
+        ""organization"": {
+            ""id"": ""15ce78a2be4d4429aa729dd91be0cc87""
+        }
+}"
+"app_key","gq-guo-test"
+"app_platform","shopify"
+"app_name","aftership"

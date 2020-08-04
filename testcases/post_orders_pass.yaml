@@ -1,0 +1,32 @@
+config:
+    name: create jobs 
+    variables:
+        test_file_name: orders.csv
+        test_file_dir: testdata
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    export: ["orders_id","order_number"]
+    
+teststeps:
+-
+    name: post orders
+    variables:
+        key: post_pass
+    request:
+        method: POST
+        url: /orders
+        json: ${get_test_data($test_file_name,$test_file_dir,$key)}
+        headers:
+            am-api-key: ${ENV(AM_API_KEY)}
+            Content-Type: application/json
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+    extract:
+        orders_id: body.data.id
+        order_number: body.data.order_number
+    validate:
+#        - eq: ["status_code", 200]
+        - eq: ["body.meta.code", 20100]
+#        - eq: ["body.data.app.name", "3"]
+        - eq: ["body.data.app.key", "gq-guo-test"]
+

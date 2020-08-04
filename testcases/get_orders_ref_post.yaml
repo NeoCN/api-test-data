@@ -1,0 +1,34 @@
+config:
+    name: query all connections
+    variables:
+        test_file_name: orders.csv
+        test_file_dir: testdata
+        test_env: test
+        test_app_key: app_key
+        test_organization_id: organization_id 
+        test_app_platform: app_platform 
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get order number
+    testcase: testcases/post_orders_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - order_number
+-
+    name: query orders with id
+    request:
+        method: GET
+        url: /orders
+        headers: 
+            am-api-key: ${ENV(AM_API_KEY)}
+        params:
+          app_key: ${get_test_data($test_file_name,$test_file_dir,$test_app_key)}
+          organization_id: ${get_test_data($test_file_name,$test_file_dir,$test_organization_id)}
+          app_platform: ${get_test_data($test_file_name,$test_file_dir,$test_app_platform)}
+          order_number: $order_number
+    validate:
+        - eq: ["body.data.orders[0].order_name","#$order_number"]

@@ -1,0 +1,9 @@
+base_url:
+  test: https://platform.automizelyapi.io/connectors/v2
+  test_incy: https://testing-incy-platform.automizalyapi.io/connectors/v2
+
+webhook:
+  aftership: https://webhooks.automizely.com/aftership/shopify/all/v1
+  postmen: https://webhooks.automizely.com/postmen/shopify/all/v1
+  returnscenter: https://webhooks.automizely.com/returnscenter/shopify/all/v1
+  automizaly: https://webhooks.automizely.com/automizaly/shopify/all/v1

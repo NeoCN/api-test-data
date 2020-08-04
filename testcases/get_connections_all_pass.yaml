@@ -1,0 +1,32 @@
+config:
+    name: query all connections
+    variables:
+        test_file_name: connections.csv
+        test_file_dir: testdata
+        test_env: test
+        test_app_key: app_key
+        test_app_platform: app_platform
+        test_app_name: app_name
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get all connections
+    
+    request:
+        method: GET
+        url: /connections
+        params:
+          app_key: ${get_test_data($test_file_name,$test_file_dir,$test_app_key)}
+          app_name: ${get_test_data($test_file_name,$test_file_dir,$test_app_name)}
+          app_platform: ${get_test_data($test_file_name,$test_file_dir,$test_app_platform)}
+        headers:
+            am-api-key: ${ENV(AM_API_KEY)}
+    validate:
+#        - eq: ["status_code", 200]
+#        - eq: ["body.meta.code", 20100]
+#        - eq: ["body.data.app.name", "3"]
+        - eq: ["body.meta.code", 20000]
+        - eq: ["body.data.connections[0].app.key","gq-guo-test"]
+

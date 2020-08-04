@@ -1,0 +1,24 @@
+config:
+    name: query inventory item with id
+    variables:
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get inventory_item id
+    testcase: testcases/post_inventory_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - inventory_items_id
+-
+    name: query inventory_items with id
+    request:
+        method: GET
+        url: /inventory_items/$inventory_items_id
+        headers: 
+            am-api-key: ${ENV(AM_API_KEY)}
+    validate:
+        - eq: ["body.data.app.key","gq-guo-test"]

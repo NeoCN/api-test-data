@@ -1,0 +1,26 @@
+config:
+    name: query orders with id
+    variables:
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get orders id
+    testcase: testcases/post_orders_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - orders_id
+-
+    name: query jobs with id
+    request:
+        method: GET
+        url: /orders/$orders_id
+        headers: 
+            am-api-key: ${ENV(AM_API_KEY)}
+    validate:
+        - eq: ["body.data.app.key","gq-guo-test"]
+        - eq: ["body.data.organization.id","15ce78a2be4d4429aa729dd91be0cc87"]
+        - eq: ["body.data.order_status","closed"]

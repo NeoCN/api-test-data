@@ -1,0 +1,31 @@
+config:
+    name: create inventory items
+    variables:
+        test_file_name: inventory_items.csv
+        test_file_dir: testdata
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    export: ["inventory_items_id"]
+    
+teststeps:
+-
+    name: post inventory_items
+    variables:
+        key: post_pass
+    request:
+        method: POST
+        url: /inventory_items
+        json: ${get_test_data($test_file_name,$test_file_dir,$key)}
+        headers:
+            am-api-key: ${ENV(AM_API_KEY)}
+            Content-Type: application/json
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+    extract:
+        inventory_items_id: body.data.InventoryItemID
+    validate:
+#        - eq: ["status_code", 200]
+        - eq: ["body.meta.code", 20100]
+#        - eq: ["body.data.app.name", "3"]
+        - eq: ["body.data.AppKey", "gq-guo-test"]
+

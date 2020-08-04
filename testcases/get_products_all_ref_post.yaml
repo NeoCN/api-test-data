@@ -1,0 +1,34 @@
+config:
+    name: query products 
+    variables:
+        test_file_name: products.csv
+        test_file_dir: testdata
+        test_env: test
+        test_app_key: app_key
+        test_organization_id: organization_id 
+        test_app_platform: app_platform 
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get products external_id
+    testcase: testcases/post_products_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - external_id
+-
+    name: query products 
+    request:
+        method: GET
+        url: /products
+        headers: 
+            am-api-key: ${ENV(AM_API_KEY)}
+        params:
+          app_key: ${get_test_data($test_file_name,$test_file_dir,$test_app_key)}
+          organization_id: ${get_test_data($test_file_name,$test_file_dir,$test_organization_id)}
+          app_platform: ${get_test_data($test_file_name,$test_file_dir,$test_app_platform)}
+          external_id: $external_id
+    validate:
+        - eq: ["body.data.products[0].title","one plus"]

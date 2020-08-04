@@ -1,0 +1,25 @@
+config:
+    name: query jobs with id
+    variables:
+        test_env: test
+    base_url: ${get_base_url($test_env)}
+    verify: false
+    
+teststeps:
+-
+    name: get jobs id
+    testcase: testcases/post_jobs_pass.yaml
+    teardown_hooks:
+        - ${sleep(0.2)}
+    export:
+        - jobs_id
+-
+    name: query jobs with id
+    request:
+        method: GET
+        url: /jobs/$jobs_id
+        headers: 
+            am-api-key: ${ENV(AM_API_KEY)}
+    validate:
+        - eq: ["body.data.connection.app.key","gq-guo-test"]
+        - eq: ["body.data.connection.organization.id","15ce78a2be4d4429aa729dd91be0cc87"]

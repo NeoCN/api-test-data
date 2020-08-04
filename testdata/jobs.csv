@@ -1,0 +1,57 @@
+"title","value"
+"post_pass","{
+    ""connection"": {
+        ""id"": ""30c6914583f648599d05fd41e64bef7e""
+    },
+    ""resource"": ""orders"",
+    ""recurring"": true
+}"
+"api_key_Incorrect","{
+    ""connection"": {
+        ""id"": ""30c6914583f648599d05fd41e64bef7e""
+    },
+    ""resource"": ""orders"",
+    ""recurring"": true
+}"
+"no_connection_id","{
+    ""connection"": {
+        ""id"": """"
+    },
+    ""resource"": ""orders"",
+    ""recurring"": true
+}"
+"no_resource","{
+    ""connection"": {
+        ""id"": """"
+    },
+    ""recurring"": true
+}"
+"no_recurring","{
+    ""connection"": {
+        ""id"": ""30c6914583f648599d05fd41e64bef7e""
+    },
+    ""resource"": ""orders"",
+}"
+"no_connection","{
+    ""connection"": {
+        ""id"": ""30c6914583f648599d05fd41e64bef7e""
+    },
+    ""resource"": ""orders"",
+    ""recurring"": true
+}"
+"patch_pass","{
+    ""status"": ""terminated"",
+    ""resource"": ""orders"",
+    ""recurring"": true,
+    ""connection"": {
+        ""app"": {
+            ""key"": ""gq-guo-test"",
+            ""name"": ""postmen"",
+            ""platform"": ""shopify""
+        },
+        ""organization"": {
+            ""id"": ""15ce78a2be4d4429aa729dd91be0cc87""
+        },
+        ""id"": ""0f1cda18127d4790b811f0275aa203c1""
+    }
+}"
