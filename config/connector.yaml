@@ -7,3 +7,6 @@ webhook:
   postmen: https://webhooks.automizely.com/postmen/shopify/all/v1
   returnscenter: https://webhooks.automizely.com/returnscenter/shopify/all/v1
   automizaly: https://webhooks.automizely.com/automizaly/shopify/all/v1
+
+slack:
+  connector_api_test_report: C01884HDMLJ
