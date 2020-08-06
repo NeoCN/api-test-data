@@ -1,16 +1,12 @@
 ###
  # @Author: gq.guo
  # @Date: 2020-08-04 17:07:36
- # @LastEditTime: 2020-08-05 17:00:18
- # @LastEditors: Please set LastEditors
+ # @LastEditTime: 2020-08-06 17:57:28
+ # @LastEditors: gq.guo
  # @Description: In User Settings Edit
  # @FilePath: /api_test/init.sh
 ### 
-rm -rf testcases
-rm -rf testdata 
-rm -rf config
-rm debugtalk.py 
-rm -rf apienv
+rm -rf $HOME/tmp/apitest/
 
 if [ ! -d "$HOME/tmp/api_test/apienv" ]; then
   python3 -m venv apienv
