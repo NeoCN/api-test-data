@@ -1,8 +1,8 @@
 '''
 @Author: your name
 @Date: 2020-08-05 09:38:19
-@LastEditTime: 2020-08-05 16:55:17
-@LastEditors: Please set LastEditors
+LastEditTime: 2020-08-06 17:33:22
+LastEditors: gq.guo
 @Description: In User Settings Edit
 @FilePath: /automate_test_paltform/conftest.py
 '''
@@ -10,6 +10,7 @@ import os
 import ssl
 import json
 import requests
+import pytest
 
 from datetime import datetime
 from _pytest import terminal
@@ -44,16 +45,17 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     result = {}
     result['total'] = terminalreporter._numcollected
     result['passed'] = len(terminalreporter.stats.get('passed', []))
-    result['failed'] = len(terminalreporter.stats.get('failed', []))
+    failed_cases = terminalreporter.stats.get('failed', [])
+    result['failed'] = len(failed_cases)
     result['error'] = len(terminalreporter.stats.get('error', []))
     result['skiped'] = len(terminalreporter.stats.get('skiped', []))
+
     report = {
         'run time': datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
         'result': result
     }
     send_report_to_slack(channel='connector_api_test_report',message=report,report_file='report.html')
-    print(result)
-    # return result
+    return result
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 config:
-    name: create jobs 
+    name: patch jobs 
     variables:
         test_file_name: jobs.csv
         test_file_dir: testdata

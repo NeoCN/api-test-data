@@ -1,0 +1,30 @@
+config:
+    name: query orders with params
+    variables:
+        test_file_name: orders.csv
+        test_file_dir: testdata
+        commerce: shopify
+    base_url: ${get_shop_domain($commerce)}
+    verify: false
+    export: ["external_id","order_name"]
+
+teststeps:
+    - name: query orders with params
+      variables: 
+          key: shopify_order_pass
+      request:
+          method: POST
+          url: /orders.json
+          headers:
+              X-Shopify-Access-Token: ${ENV(SHOPIFY_TOKEN)}
+              User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36 
+          json: ${get_test_data($test_file_name,$test_file_dir,$key)} 
+      extract:
+          external_id: body.order.id
+          order_name: body.order.name
+      validate:
+          - eq:
+                [
+                    "body.order.line_items[0].vendor",
+                    "gq.guo_test",
+                ]

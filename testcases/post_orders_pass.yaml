@@ -1,5 +1,5 @@
 config:
-    name: create jobs 
+    name: create orders 
     variables:
         test_file_name: orders.csv
         test_file_dir: testdata

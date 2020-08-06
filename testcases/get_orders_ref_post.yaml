@@ -1,5 +1,5 @@
 config:
-    name: query all connections
+    name: query orders with params
     variables:
         test_file_name: orders.csv
         test_file_dir: testdata
@@ -19,7 +19,7 @@ teststeps:
     export:
         - order_number
 -
-    name: query orders with id
+    name: query orders with params
     request:
         method: GET
         url: /orders

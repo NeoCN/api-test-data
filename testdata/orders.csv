@@ -782,3 +782,14 @@
 "organization_id","15ce78a2be4d4429aa729dd91be0cc87"
 "app_platform","shopify"
 "app_key","gq-guo-test"
+"commerce","shopify"
+"shopify_order_pass","{
+  ""order"": {
+    ""line_items"": [
+      {
+        ""variant_id"": 35094184919193,
+        ""quantity"": 2
+      }
+    ]
+  }
+}"

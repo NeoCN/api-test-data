@@ -1,5 +1,5 @@
 config:
-    name: query all connections
+    name: query inventory items with params
     variables:
         test_file_name: inventory_items.csv
         test_file_dir: testdata
@@ -12,7 +12,7 @@ config:
     
 teststeps:
 -
-    name: get all connections
+    name: query inventory items with params
     
     request:
         method: GET

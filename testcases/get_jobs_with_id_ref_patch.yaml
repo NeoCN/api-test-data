@@ -1,5 +1,5 @@
 config:
-    name: query jobs with id
+    name: query jobs with id (patched)
     variables:
         test_env: test
     base_url: ${get_base_url($test_env)}

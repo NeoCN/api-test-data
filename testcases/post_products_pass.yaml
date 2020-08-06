@@ -1,5 +1,5 @@
 config:
-    name: create jobs 
+    name: create products 
     variables:
         test_file_name: products.csv
         test_file_dir: testdata
@@ -10,7 +10,7 @@ config:
     
 teststeps:
 -
-    name: post orders
+    name: post products
     variables:
         key: post_pass
     request:

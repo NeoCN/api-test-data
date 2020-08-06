@@ -1,0 +1,39 @@
+config:
+    name: query orders with params
+    variables:
+        test_file_name: orders.csv
+        test_file_dir: testdata
+        test_env: test
+        test_organization_id: organization_id
+    base_url: ${get_base_url($test_env)}
+    verify: false
+
+teststeps:
+- 
+    name: get new order's external_id
+    testcase: testcases/shopify_create_orders.yaml
+    teardown_hooks: 
+        - ${sleep(20)}
+    export:
+        - external_id
+        - order_name
+
+-
+    name: query orders with external_id
+    request:
+        method: GET
+        url: /orders
+        headers:
+            am-api-key: ${ENV(AM_API_KEY)}
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36        
+        params:
+            organization_id: ${get_test_data($test_file_name,$test_file_dir,$test_organization_id)}
+            #   app_platform: $app_platform
+            external_id: $external_id
+            #   external_id: 2636187369625
+    validate:
+        - eq:
+            [
+                "body.data.orders[0].app.key",
+                "gq-guo-test",
+            ]

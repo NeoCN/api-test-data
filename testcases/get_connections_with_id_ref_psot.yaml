@@ -1,5 +1,5 @@
 config:
-    name: query all connections
+    name: query connections with id
     variables:
         test_file_name: connections.csv
         test_file_dir: testdata
